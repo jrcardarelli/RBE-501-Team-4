@@ -1,6 +1,8 @@
 /home/tamar/RBE501_ws/install/arm_robot_description/share/arm_robot_description//urdf/arm_description.urdf.xacro
+/home/tamar/RBE501_ws/install/arm_robot_description/share/arm_robot_description//urdf/arm_description2.urdf.xacro
 /home/tamar/RBE501_ws/install/arm_robot_description/share/arm_robot_description//urdf/common_properties.xacro
 /home/tamar/RBE501_ws/install/arm_robot_description/share/arm_robot_description//rviz/arm_config.rviz
+/home/tamar/RBE501_ws/install/arm_robot_description/share/arm_robot_description//config/3r_manipulator_control.yaml
 /home/tamar/RBE501_ws/install/arm_robot_description/share/arm_robot_description//launch/arm_bringup.launch.xml
 /home/tamar/RBE501_ws/install/arm_robot_description/share/ament_index/resource_index/package_run_dependencies/arm_robot_description
 /home/tamar/RBE501_ws/install/arm_robot_description/share/ament_index/resource_index/parent_prefix_path/arm_robot_description
