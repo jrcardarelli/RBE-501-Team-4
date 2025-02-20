@@ -1,0 +1,23 @@
+[0.429s] Invoking command in '/home/tamar/RBE501_ws/build/final_project': PS1=(vEnv) \[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ PYTHONPATH=/home/tamar/RBE501_ws/build/final_project/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/tamar/RBE501_ws/install/final_project/lib/python3.10/site-packages:${PYTHONPATH} VIRTUAL_ENV_PROMPT=(vEnv) /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/tamar/RBE501_ws/build/final_project/build --no-deps symlink_data
+[0.567s] running develop
+[0.631s] running egg_info
+[0.631s] creating final_project.egg-info
+[0.631s] writing final_project.egg-info/PKG-INFO
+[0.631s] writing dependency_links to final_project.egg-info/dependency_links.txt
+[0.631s] writing entry points to final_project.egg-info/entry_points.txt
+[0.631s] writing requirements to final_project.egg-info/requires.txt
+[0.631s] writing top-level names to final_project.egg-info/top_level.txt
+[0.631s] writing manifest file 'final_project.egg-info/SOURCES.txt'
+[0.632s] reading manifest file 'final_project.egg-info/SOURCES.txt'
+[0.632s] writing manifest file 'final_project.egg-info/SOURCES.txt'
+[0.633s] running build_ext
+[0.633s] Creating /home/tamar/RBE501_ws/install/final_project/lib/python3.10/site-packages/final-project.egg-link (link to .)
+[0.633s] 
+[0.633s] Installed /home/tamar/RBE501_ws/build/final_project
+[0.633s] running symlink_data
+[0.633s] creating /home/tamar/RBE501_ws/install/final_project/share/ament_index
+[0.633s] creating /home/tamar/RBE501_ws/install/final_project/share/ament_index/resource_index
+[0.633s] creating /home/tamar/RBE501_ws/install/final_project/share/ament_index/resource_index/packages
+[0.633s] symbolically linking /home/tamar/RBE501_ws/build/final_project/resource/final_project -> /home/tamar/RBE501_ws/install/final_project/share/ament_index/resource_index/packages
+[0.633s] symbolically linking /home/tamar/RBE501_ws/build/final_project/package.xml -> /home/tamar/RBE501_ws/install/final_project/share/final_project
+[0.643s] Invoked command in '/home/tamar/RBE501_ws/build/final_project' returned '0': PS1=(vEnv) \[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ PYTHONPATH=/home/tamar/RBE501_ws/build/final_project/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/tamar/RBE501_ws/install/final_project/lib/python3.10/site-packages:${PYTHONPATH} VIRTUAL_ENV_PROMPT=(vEnv) /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/tamar/RBE501_ws/build/final_project/build --no-deps symlink_data
