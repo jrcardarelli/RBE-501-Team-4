@@ -1,0 +1,41 @@
+# Controller Manager Settings
+controller_manager:
+  ros__parameters:
+    update_rate: 100  # Hz
+
+# Joint State Controller
+joint_state_controller:
+  type: joint_state_controller/JointStateController
+  publish_rate: 50  # Hz
+
+# Joint Trajectory Controller
+joint_trajectory_controller:
+  type: position_controllers/JointTrajectoryController
+  joints:
+    - base_joint
+    - link1_joint2
+    - link2_joint3
+  constraints:
+    goal_time: 0.6
+    stopped_velocity_tolerance: 0.02
+    base_joint: {trajectory: 0.1, goal: 0.1}
+    link1_joint2: {trajectory: 0.1, goal: 0.1}
+    link2_joint3: {trajectory: 0.1, goal: 0.1}
+  state_publish_rate: 50  # Hz
+  action_monitor_rate: 20  # Hz
+
+# Position Controllers for Each Joint
+base_joint_position_controller:
+  type: effort_controllers/JointPositionController
+  joint: base_joint
+  pid: {p: 100.0, i: 0.01, d: 10.0}
+
+link1_joint2_position_controller:
+  type: effort_controllers/JointPositionController
+  joint: link1_joint2
+  pid: {p: 100.0, i: 0.01, d: 10.0}
+
+link2_joint3_position_controller:
+  type: effort_controllers/JointPositionController
+  joint: link2_joint3
+  pid: {p: 100.0, i: 0.01, d: 10.0}
