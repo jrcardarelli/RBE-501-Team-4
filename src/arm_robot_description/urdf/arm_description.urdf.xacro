@@ -8,14 +8,14 @@
     <xacro:property name="joint_length" value="0.05" />
     <xacro:property name="link1_length" value="0.10" />
     <xacro:property name="link2_length" value="0.05" />
-    <xacro:property name="link3_length" value="0.04" />
+    <xacro:property name="link3_length" value="0.05" />
     <xacro:property name="payload_radius" value="0.0125" /> 
 
 
     <!-- Base footprint and link -->
     <link name="base_footprint">
         <inertial>
-            <mass value="0.001"/>
+            <mass value="1000"/>
             <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001"/>
         </inertial>
         <collision>
@@ -29,7 +29,7 @@
         <parent link="base_footprint"/>
         <child link="base_link"/>
         <origin xyz="0 0 ${link_radius}" rpy="${pi/2} 0 0"/>
-        <limit effort="100.0" velocity="10.0" lower="${-pi/2}" upper="${pi/2}" />
+        <limit effort="100.0" velocity="10.0" lower="0" upper="${pi}" />
         <axis xyz="0 0 1"/>
     </joint>
 
@@ -52,7 +52,7 @@
     <joint name="base_link2_joint" type="fixed">
         <parent link="base_link"/>
         <child link="link1"/>
-        <origin xyz="0 ${link1_length/2} 0" rpy="${-pi/2} 0 0 "/>
+        <origin xyz="0 0 0" rpy="0 0 0 "/>
         <axis xyz="0 1 0"/>
     </joint>
 
@@ -62,6 +62,7 @@
                     <cylinder radius="${link_radius}" length="${link1_length}"/>
                 </geometry>
                 <material name="blue"/>
+                <origin xyz="${link1_length/2} 0 0" rpy="0 ${pi/2} 0"/>
             </visual>
             <collision>
                 <geometry>
@@ -71,11 +72,11 @@
             <xacro:cylinder_inertia m="0.1" r="${link_radius}" h="${link1_length}" 
                                     xyz="0 0 0" rpy="0 0 0" />
     </link>
-
+ 
     <joint name="link1_joint2" type="revolute">
         <parent link="link1"/>
         <child link="joint2_link"/>
-        <origin xyz="0 0 ${link1_length/2}" rpy="${pi/2} 0 0"/>
+        <origin xyz="${link1_length} 0 0" rpy="0 0 0"/>
         <limit effort="100.0" velocity="10.0" lower="${-pi/2}" upper="${pi/2}" />
         <axis xyz="0 0 1"/>
     </joint>
@@ -99,7 +100,7 @@
     <joint name="joint2_link2_joint" type="fixed">
         <parent link="joint2_link"/>
         <child link="link2"/>
-        <origin xyz="0 ${link2_length/2} 0" rpy="${-pi/2} 0 0 "/>
+        <origin xyz="0 0 0" rpy="0 0 0 "/>
         <axis xyz="0 1 0"/>
     </joint>
 
@@ -109,6 +110,7 @@
                     <cylinder radius="${link_radius}" length="${link2_length}"/>
                 </geometry>
                 <material name="blue"/>
+                <origin xyz="${link2_length/2} 0 0" rpy="0 ${pi/2} 0"/>
             </visual>
             <collision>
                 <geometry>
@@ -122,7 +124,7 @@
     <joint name="link2_joint3" type="revolute">
         <parent link="link2"/>
         <child link="joint3_link"/>
-        <origin xyz="0 0 ${link2_length/2}" rpy="${pi/2} 0 0"/>
+        <origin xyz="${link2_length} 0 0" rpy="0 0 0"/>
         <limit effort="100.0" velocity="10.0" lower="${-pi/2}" upper="${pi/2}" />
         <axis xyz="0 0 1"/>
     </joint>
@@ -146,7 +148,7 @@
     <joint name="joint3_link3_joint" type="fixed">
         <parent link="joint3_link"/>
         <child link="link3"/>
-        <origin xyz="0 ${link3_length/2} 0" rpy="${-pi/2} 0 0 "/>
+        <origin xyz="0 0 0" rpy="0 0 0 "/>
         <axis xyz="0 1 0"/>
     </joint>
 
@@ -156,6 +158,7 @@
                     <cylinder radius="${link_radius}" length="${link3_length}"/>
                 </geometry>
                 <material name="blue"/>
+                <origin xyz="${link3_length/2} 0 0" rpy="0 ${pi/2} 0"/>
             </visual>
             <collision>
                 <geometry>
@@ -169,7 +172,7 @@
     <joint name="link3_payload" type="fixed">
         <parent link="link3"/>
         <child link="payload"/>
-        <origin xyz="0 0 ${link3_length/2 + payload_radius}" rpy="0 0 0"/>
+        <origin xyz="${link3_length+ payload_radius} 0 0" rpy="0 0 0"/>
         <axis xyz="0 0 1"/>
     </joint>
 
@@ -188,7 +191,7 @@
         <xacro:sphere_inertia m="0.5" r="${payload_radius}" 
                                     xyz="0 0 0" rpy="0 0 0" />
     </link>
-    
+
     <gazebo>
         <plugin filename="libgazebo_ros2_control.so" name="gazebo_ros2_control">
             <parameters>$(find arm_robot_description)/config/3r_manipulator_control.yaml</parameters>
