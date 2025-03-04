@@ -30,6 +30,35 @@ class FwdKin:
             np.array([0, 0, 0, 1])
         ])
         return T
+    
+    def fkine(self, S, M, q):
+        # Initialize the transformation matrix as an identity matrix
+        T = np.eye(4)
+        
+        # Iterate over each column in S
+        for i in range(S.shape[1]):
+            Si = S[:, i]
+            
+            # Skew-symmetric matrix for the current column
+            ssm = np.array([[0, -Si[2], Si[1]],
+                        [Si[2], 0, -Si[0]],
+                        [-Si[1], Si[0], 0]])
+            
+            # Rotation matrix for the current joint
+            R = np.eye(3) + np.sin(q[i]) * ssm + (1 - np.cos(q[i])) * np.dot(ssm, ssm)
+            
+            # Translation vector for the current joint
+            P = (np.eye(3) * q[i] + (1 - np.cos(q[i])) * ssm + (q[i] - np.sin(q[i])) * np.dot(ssm, ssm)) @ Si[3:]
+            
+            # Homogeneous transformation matrix for the current joint
+            Ti = np.vstack((np.hstack((R, P.reshape(3, 1))), np.array([0, 0, 0, 1])))
+            
+            # Update the overall transformation matrix
+            T = T @ Ti
+        
+        # Compute the final forward kinematics
+        fk = T @ M
+        return fk
 
     def adjoint(self, V, T):
         # Extract the rotation matrix R and translation vector P from T
@@ -99,6 +128,12 @@ S2 = np.array([
     [0, 0, -1]
 ])
 q = [np.random.random() * 2 * np.pi, np.random.random() * 2 * np.pi, np.random.random() * 0.3]
+R_home = np.array([[0, 1, 0],
+                   [1, 0, 0],
+                   [0, 0, -1]
+                   ])
+t_home = np.array([0.3, 0, 0.3])
+M = np.vstack((np.hstack((R_home, t_home.reshape(3, 1))), [0, 0, 0, 1]))
 
 # Create an instance of InvKin
 fwd_kin = FwdKin()
@@ -107,6 +142,8 @@ fwd_kin = FwdKin()
 print(fwd_kin.axis_angle_2_rot(omega, theta))
 print('--------------------------')
 print(fwd_kin.twist2ht(S, theta))
+print('--------------------------')
+print(fwd_kin.fkine(S2, M, q))
 print('--------------------------')
 print(fwd_kin.adjoint(S, np.eye(4)))
 print('--------------------------')
